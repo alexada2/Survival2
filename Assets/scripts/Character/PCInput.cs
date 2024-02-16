@@ -6,15 +6,13 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 public class PCInput : IInputSystem
 {
     public Vector2 Axis => GetMoveVector();
-
-    public Vector2 MousePosition => GetRotationVector();
-
-    //    float mousex = Input.GetAxis("Mouse X");
-    //    float mousey = Input.GetAxis("Mouse Y");
-    
+    public bool IsGrab => Input.GetKey(KeyCode.E);
+    public Vector2 RotationVector => GetRotationVector();
+    public Vector2 MousePosition => Input.mousePosition;
+    public bool IsInvOpen => Input.GetKeyDown(KeyCode.Tab);
     private Vector2 GetMoveVector()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        
         Vector2 moveVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         return moveVector;
     }

@@ -16,10 +16,10 @@ public class PlayerMovement : Character
     private void Update()
     {
        if (_inputSystem == null) return;
-        Move(new Vector3(_inputSystem.Axis.x, 0, _inputSystem.Axis.y), 3);
+        Move(new Vector3(_inputSystem.Axis.x*2, 0, _inputSystem.Axis.y*2), 3);
         Invoke("OldMagnitudeSet", Time.deltaTime * 2);
-        if (_inputSystem.MousePosition.magnitude == OldMagntude) return;
-        RotateTo(_inputSystem.MousePosition.y, _inputSystem.MousePosition.x, Camera.main, 7);
+        if (_inputSystem.RotationVector.magnitude == OldMagntude) return;
+        RotateTo(_inputSystem.RotationVector.y, _inputSystem.RotationVector.x, Camera.main, 7);
        
     }
     public void RotateTo(float mousey, float mousex, Camera GetCamera, float CameraSps)
@@ -33,6 +33,6 @@ public class PlayerMovement : Character
     }
     private void OldMagnitudeSet()
     {
-        OldMagntude = _inputSystem.MousePosition.magnitude;
+        OldMagntude = _inputSystem.RotationVector.magnitude;
     }
 }
